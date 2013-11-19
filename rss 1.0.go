@@ -74,6 +74,7 @@ func parseRSS1(data []byte, read *db) (*Feed, error) {
 		}
 
 		// Skip items already known.
+		// writing on req channel & reading on response channel
 		if read.req <- item.ID; <-read.res {
 			continue
 		}
