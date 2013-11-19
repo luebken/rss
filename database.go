@@ -18,8 +18,10 @@ func (d *db) Run() {
 	var s string
 
 	for {
+		// reading on req channel
 		s = <-d.req
 		if _, ok := d.known[s]; ok {
+			// writing on res channel
 			d.res <- true
 		} else {
 			d.res <- false
