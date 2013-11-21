@@ -33,11 +33,6 @@ func parseAtom(data []byte, read *db) (*Feed, error) {
 	// Process items.
 	for _, item := range feed.Items {
 
-		// Skip items already known.
-		if read.req <- item.ID; <-read.res {
-			continue
-		}
-
 		next := new(Item)
 		next.Title = item.Title
 		next.Content = item.Content
